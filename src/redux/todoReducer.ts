@@ -19,7 +19,7 @@ const initialState: TodoState = {
     error: null,
 };
 
-const todoListSlice = createSlice ({
+const todoReducer = createSlice ({
     name: 'todoList',
     initialState,
     reducers: {
@@ -35,4 +35,5 @@ const todoListSlice = createSlice ({
 
 });
 
-export default todoListSlice.reducer;
+export const { createTodo } = todoReducer.actions;
+export default todoReducer.reducer;
