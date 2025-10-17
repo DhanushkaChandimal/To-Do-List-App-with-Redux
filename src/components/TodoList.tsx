@@ -40,6 +40,12 @@ const TodoList: React.FC = () => {
                     ))}
                 </tbody>
             </table>
+            
+            {todoList.length === 0 && (
+                <p style={{ textAlign: 'center', marginTop: '20px', color: '#666' }}>
+                    No todos yet. Click "Add Todo" to get started!
+                </p>
+            )}
         </div>
     );
 };
