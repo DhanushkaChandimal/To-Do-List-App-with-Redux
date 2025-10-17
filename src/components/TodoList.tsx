@@ -1,14 +1,21 @@
 import type React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../redux/store";
+import { createTodo } from "../redux/todoReducer";
 
 const TodoList: React.FC = () => {
     const todoList = useSelector((state: RootState) => state.todoList.todos);
     const dispatch = useDispatch<AppDispatch>();
 
+    const handleAddTodo = () => {
+        dispatch(createTodo());
+    };
+
     return (
         <div>
             <h1>Todo List</h1>
+            <button onClick={handleAddTodo}>Add Todo</button>
+            
             <table style={{ width: '100%', marginTop: '20px', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr style={{ backgroundColor: '#f0f0f0' }}>
