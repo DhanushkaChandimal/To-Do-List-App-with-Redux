@@ -31,9 +31,15 @@ const todoReducer = createSlice ({
                 dueDate: action.payload.dueDate || null
             })
         },
+        toggleTodo: (state, action) => {
+            const todo = state.todos.find(todo => todo.id === action.payload);
+            if (todo) {
+                todo.completed = !todo.completed;
+            }
+        },
     },
 
 });
 
-export const { createTodo } = todoReducer.actions;
+export const { createTodo, toggleTodo } = todoReducer.actions;
 export default todoReducer.reducer;

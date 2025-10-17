@@ -2,7 +2,7 @@ import type React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../redux/store";
-import { createTodo } from "../redux/todoReducer";
+import { createTodo, toggleTodo } from "../redux/todoReducer";
 
 const TodoList: React.FC = () => {
     const todoList = useSelector((state: RootState) => state.todoList.todos);
@@ -21,6 +21,10 @@ const TodoList: React.FC = () => {
             setDescription("");
             setDueDate("");
         }
+    };
+
+    const handleToggleTodo = (id: string) => {
+        dispatch(toggleTodo(id));
     };
 
     return (
@@ -77,6 +81,7 @@ const TodoList: React.FC = () => {
                         <th>Description</th>
                         <th>Completed</th>
                         <th>Due Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,6 +94,22 @@ const TodoList: React.FC = () => {
                             </td>
                             <td>
                                 {todo.dueDate || 'No due date'}
+                            </td>
+                            <td>
+                                <button
+                                    onClick={() => handleToggleTodo(todo.id)}
+                                    style={{
+                                        backgroundColor: todo.completed ? '#28a745' : '#ffc107',
+                                        color: 'white',
+                                        border: 'none',
+                                        padding: '5px 10px',
+                                        borderRadius: '4px',
+                                        cursor: 'pointer',
+                                        fontSize: '12px'
+                                    }}
+                                >
+                                    {todo.completed ? 'Mark Undone' : 'Mark Done'}
+                                </button>
                             </td>
                         </tr>
                     ))}
