@@ -23,12 +23,12 @@ const todoReducer = createSlice ({
     name: 'todoList',
     initialState,
     reducers: {
-        createTodo: (state) => {
+        createTodo: (state, action) => {
             state.todos.push({
                 id: Date.now().toString(),
-                description: "New Todo",
+                description: action.payload.description,
                 completed: false,
-                dueDate: null
+                dueDate: action.payload.dueDate || null
             })
         },
     },
