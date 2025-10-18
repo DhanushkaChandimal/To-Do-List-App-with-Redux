@@ -77,25 +77,32 @@ const TodoList: React.FC = () => {
             <table style={{ width: '100%', marginTop: '20px', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr style={{ backgroundColor: '#f0f0f0' }}>
-                        <th>ID</th>
-                        <th>Description</th>
-                        <th>Completed</th>
-                        <th>Due Date</th>
-                        <th>Actions</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>ID</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Description</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Completed</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Due Date</th>
+                        <th style={{ border: '1px solid #ddd', padding: '8px' }}>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {todoList.map((todo) => (
-                        <tr key={todo.id}>
-                            <td>{todo.id}</td>
-                            <td>{todo.description}</td>
-                            <td>
+                        <tr key={todo.id} style={{ backgroundColor: todo.completed ? '#f8f9fa' : 'white' }}>
+                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>{todo.id}</td>
+                            <td style={{ 
+                                border: '1px solid #ddd', 
+                                padding: '8px',
+                                textDecoration: todo.completed ? 'line-through' : 'none',
+                                color: todo.completed ? '#6c757d' : 'black'
+                            }}>
+                                {todo.description}
+                            </td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                                 {todo.completed ? '✅' : '❌'}
                             </td>
-                            <td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                                 {todo.dueDate || 'No due date'}
                             </td>
-                            <td>
+                            <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                                 <button
                                     onClick={() => handleToggleTodo(todo.id)}
                                     style={{
